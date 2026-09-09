@@ -1,34 +1,402 @@
-<!DOCTYPE html><html lang="id"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Besaran, Satuan dan Dimensi</title><style>
-:root{--p:#2563eb;--s:#7c3aed;--c:#06b6d4;--bg:#f5f8ff;--card:#fff;--tx:#18233a;--line:#dbe4f0}body.dark{--bg:#0b1020;--card:#121a2d;--tx:#edf4ff;--line:#29334a}*{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;background:var(--bg);color:var(--tx);line-height:1.7}#loading{position:fixed;inset:0;z-index:99;background:linear-gradient(135deg,#071a42,#312e81,#0891b2);color:#fff;display:grid;place-items:center;text-align:center}.atom{font-size:75px;animation:spin 3s linear infinite}.box{max-width:700px;padding:25px}.bar{height:13px;background:#ffffff44;border-radius:20px;overflow:hidden}.bar i{display:block;height:100%;width:0;background:#fff;transition:.1s}@keyframes spin{to{transform:rotate(360deg)}}nav{position:sticky;top:0;background:var(--card);z-index:9;padding:10px 4%;border-bottom:1px solid var(--line);overflow:auto;white-space:nowrap}nav a,nav button{padding:8px;border:0;background:none;color:var(--tx);text-decoration:none;cursor:pointer}.hero{text-align:center;padding:90px 7%;background:radial-gradient(circle at 20% 20%,#60a5fa44,transparent 30%),radial-gradient(circle at 80% 30%,#a78bfa44,transparent 30%)}h1{font-size:clamp(38px,7vw,75px);line-height:1.1;background:linear-gradient(90deg,var(--p),var(--s),var(--c));background-clip:text;color:transparent}h2{color:var(--p);font-size:clamp(27px,4vw,40px)}.container{width:min(1100px,92%);margin:auto}.section{padding:45px 0}.card,.quiz{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:20px;margin:15px 0}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:15px}.btn{border:0;border-radius:12px;padding:13px 18px;background:linear-gradient(135deg,var(--p),var(--s));color:#fff;font-weight:bold;cursor:pointer;text-decoration:none;display:inline-block;margin:5px}.option{display:block;width:100%;padding:12px;margin:7px 0;text-align:left;border:1px solid var(--line);border-radius:10px;background:var(--bg);color:var(--tx);cursor:pointer}.correct{background:#dcfce7!important;color:#14532d!important}.wrong{background:#fee2e2!important;color:#7f1d1d!important}.story{background:#fff3cd;color:#3b2f12;padding:20px;border-radius:15px}.formula{background:#dbeafe;color:#102a55;padding:16px;border-radius:14px;font-weight:bold;font-size:18px}.dark .story,.dark .formula{background:var(--card);color:var(--tx)}table{width:100%;border-collapse:collapse;background:var(--card)}th,td{padding:10px;border-bottom:1px solid var(--line)}th{background:var(--p);color:#fff}input,select{padding:11px;border-radius:9px;border:1px solid var(--line);margin:4px;background:var(--card);color:var(--tx)}footer{background:#081735;color:#dbeafe;text-align:center;padding:40px;margin-top:40px}.hidden{display:none}@media(max-width:600px){th,td{font-size:12px;padding:7px}}
-</style></head><body>
-<div id="loading"><div class="box"><div class="atom">⚛️</div><h2 style="color:white">LABORATORIUM FISIKA DIGITAL</h2><p>Mari belajar Besaran, Satuan, dan Dimensi dengan cara yang lebih mudah dan menyenangkan!</p><div class="bar"><i id="lb"></i></div><h3 id="pct">0%</h3><button class="btn hidden" id="start">🚀 MULAI BELAJAR</button><p>Dirancang oleh<br><b>Fredynandus Takalamingan, S.Si</b></p></div></div>
-<nav><b>⚛️ FISIKA X</b> <a href="#home">🏠 Beranda</a><a href="#materi">📖 Materi</a><a href="#satuan">📏 Satuan</a><a href="#dimensi">🔬 Dimensi</a><a href="#game">🎮 Game</a><a href="#latihan">📝 Latihan</a><a href="#evaluasi">🏆 Evaluasi</a><button onclick="document.body.classList.toggle('dark')">🌙 Mode</button></nav>
-<header class="hero" id="home"><div class="atom">⚛️</div><h1>BESARAN, SATUAN<br>DAN DIMENSI</h1><h3>Bahan Ajar Interaktif Fisika Kelas X</h3><p>Memahami bahasa dasar dalam ilmu Fisika melalui materi, permainan, latihan, dan evaluasi.</p><a class="btn" href="#materi">📚 Mulai Belajar</a><a class="btn" href="#game">🎮 Mainkan Game</a></header>
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Besaran, Satuan dan Dimensi | Fisika Kelas X</title>
+<style>
+:root{
+  --bg:#f4f7ff; --card:#ffffff; --text:#172033; --muted:#61708b;
+  --primary:#2563eb; --secondary:#7c3aed; --cyan:#0891b2;
+  --line:#dbe4f0; --soft:#eef4ff; --ok:#dcfce7; --bad:#fee2e2;
+}
+body.dark{
+  --bg:#09111f; --card:#111c30; --text:#edf4ff; --muted:#aebbd0;
+  --line:#293852; --soft:#15243d; --ok:#123b2a; --bad:#472027;
+}
+*{box-sizing:border-box} html{scroll-behavior:smooth}
+body{margin:0;font-family:Arial,Helvetica,sans-serif;background:var(--bg);color:var(--text);line-height:1.8}
+#loading{position:fixed;inset:0;z-index:999;background:linear-gradient(135deg,#071b42,#312e81,#087f9c);color:#fff;display:grid;place-items:center;text-align:center}
+.loadbox{max-width:650px;padding:30px}.atom{font-size:82px;display:inline-block;animation:spin 3s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}} .loadbar{height:14px;background:#ffffff38;border-radius:20px;overflow:hidden}.loadbar i{display:block;width:0;height:100%;background:#fff}.start{display:none}
+nav{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--line);padding:9px 4%;display:flex;gap:4px;align-items:center;overflow:auto}
+body.dark nav{background:rgba(17,28,48,.92)}nav b{color:var(--primary);white-space:nowrap}nav a,nav button{color:var(--text);background:none;border:0;padding:9px;cursor:pointer;text-decoration:none;white-space:nowrap}
+.hero{min-height:78vh;padding:80px 7%;text-align:center;display:grid;place-items:center;background:radial-gradient(circle at 18% 20%,#60a5fa35,transparent 25%),radial-gradient(circle at 82% 30%,#a78bfa35,transparent 25%)}
+.hero h1{font-size:clamp(38px,7vw,78px);line-height:1.05;margin:10px 0;background:linear-gradient(90deg,var(--primary),var(--secondary),var(--cyan));background-clip:text;color:transparent}
+.hero p{max-width:800px;margin:15px auto;color:var(--muted);font-size:18px}
+.btn{display:inline-block;border:0;border-radius:14px;padding:13px 20px;margin:5px;background:linear-gradient(135deg,var(--primary),var(--secondary));color:#fff;text-decoration:none;font-weight:bold;cursor:pointer}
+.container{width:min(1120px,92%);margin:auto}.section{padding:58px 0}.section h2{font-size:clamp(28px,4vw,43px);color:var(--primary);line-height:1.25}
+.lead{font-size:18px;color:var(--muted)}.card,.quiz{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:22px;margin:16px 0;box-shadow:0 8px 25px rgba(30,64,175,.07)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:17px}.card:hover{transform:translateY(-3px);transition:.2s}
+.story{padding:22px;border-radius:18px;background:#fff5d6;color:#3d3218;margin:15px 0}.dark .story{background:var(--card);color:var(--text)}
+.formula{background:var(--soft);padding:17px;border-radius:14px;border-left:5px solid var(--primary);font-size:18px;margin:16px 0}
+.callout{background:var(--ok);padding:18px;border-radius:14px;margin:15px 0}
+.option{display:block;width:100%;text-align:left;padding:13px;margin:8px 0;border:1px solid var(--line);background:var(--bg);color:var(--text);border-radius:12px;cursor:pointer;font-size:15px}.option:hover{border-color:var(--primary)}
+.correct{background:var(--ok)!important}.wrong{background:var(--bad)!important}
+table{width:100%;border-collapse:collapse;background:var(--card)}th,td{padding:11px;border-bottom:1px solid var(--line);text-align:left}th{background:var(--primary);color:#fff}
+details{background:var(--card);border:1px solid var(--line);padding:15px 18px;border-radius:14px;margin:10px 0}summary{cursor:pointer;font-weight:bold}
+.step{position:relative;padding:18px 18px 18px 65px;background:var(--card);border:1px solid var(--line);border-radius:16px;margin:12px 0}.step span{position:absolute;left:16px;top:17px;width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:var(--primary);color:#fff;font-weight:bold}
+input,select{padding:12px;border:1px solid var(--line);background:var(--card);color:var(--text);border-radius:10px;margin:5px}
+.score{background:var(--primary);color:#fff;padding:5px 12px;border-radius:99px;font-weight:bold}.gamehead{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.result{padding:12px;margin-top:10px;border-radius:10px;font-weight:bold}.hidden{display:none!important}
+.progressbox{position:fixed;right:15px;bottom:15px;width:190px;padding:11px;background:var(--card);border:1px solid var(--line);border-radius:14px;font-size:12px}.progress{height:8px;background:var(--line);border-radius:10px;overflow:hidden}.progress i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--cyan),var(--secondary));transition:.4s}
+footer{background:#081735;color:#dbeafe;text-align:center;padding:48px 7%;margin-top:50px}
+@media(max-width:650px){nav b{display:none}.hero{padding:50px 6%}.progressbox{display:none}th,td{font-size:12px;padding:8px}.step{padding-left:55px}}
+</style>
+</head>
+<body>
+
+<div id="loading">
+ <div class="loadbox">
+  <div class="atom">⚛️</div>
+  <h1>LABORATORIUM FISIKA DIGITAL</h1>
+  <p>Menyiapkan pengalaman belajar Besaran, Satuan, dan Dimensi...</p>
+  <div class="loadbar"><i id="loadBar"></i></div><h3 id="percent">0%</h3>
+  <button class="btn start" id="startBtn">🚀 MULAI BELAJAR</button>
+  <p><small>Dirancang oleh<br><b>Fredynandus Takalamingan, S.Si</b></small></p>
+ </div>
+</div>
+
+<nav>
+ <b>⚛️ FISIKA X</b>
+ <a href="#beranda">🏠 Beranda</a><a href="#materi">📖 Besaran</a><a href="#satuan">⚖️ Satuan</a>
+ <a href="#dimensi">🔬 Dimensi</a><a href="#simulator">🧪 Simulator</a><a href="#game">🎮 Game</a>
+ <a href="#latihan">📝 Latihan</a><a href="#evaluasi">🏆 Evaluasi</a>
+ <button onclick="document.body.classList.toggle('dark')">🌙 Mode</button>
+</nav>
+
+<header class="hero" id="beranda">
+ <div>
+  <div class="atom">⚛️</div>
+  <h1>BESARAN, SATUAN<br>DAN DIMENSI</h1>
+  <h3>Bahan Ajar Interaktif Fisika Kelas X</h3>
+  <p>Belajar konsep dasar Fisika secara bertahap: memahami apa yang diukur, menggunakan satuan yang tepat, hingga membongkar susunan dimensi sebuah besaran melalui langkah-langkah interaktif.</p>
+  <a href="#materi" class="btn">📚 Mulai Belajar</a><a href="#dimensi" class="btn">🔬 Pelajari Dimensi</a>
+ </div>
+</header>
+
 <main class="container">
-<section class="section" id="materi"><h2>📖 Cerita Pengantar</h2><div class="story"><b>Suatu hari Andi diminta membeli tali sepanjang 5.</b><br>Andi bertanya, “5 apa?” Apakah 5 meter, 5 centimeter, atau 5 kilometer? Dari sini kita belajar bahwa angka saja belum cukup. Hasil pengukuran harus disertai satuan.</div><div class="formula">BESARAN HASIL PENGUKURAN = NILAI + SATUAN<br>Contoh: 5 meter, 10 kilogram, 20 sekon</div>
-<div class="quiz"><b>🤔 Apakah angka 10 saja cukup menjelaskan pengukuran?</b><button class="option" onclick="ref(false)">Ya</button><button class="option" onclick="ref(true)">Tidak, harus disertai satuan</button><div id="ref"></div></div>
-<h2>📏 Apa Itu Besaran?</h2><p>Besaran adalah sesuatu yang dapat diukur dan dapat dinyatakan dengan angka serta satuan.</p><div class="grid"><div class="card">📏<h3>Panjang</h3>2 meter</div><div class="card">⚖️<h3>Massa</h3>5 kilogram</div><div class="card">⏱️<h3>Waktu</h3>30 menit</div></div>
-<h2>1. Besaran Pokok</h2><p>Besaran pokok adalah besaran yang satuannya telah ditetapkan terlebih dahulu dan tidak diturunkan dari besaran lain.</p><table><tr><th>No</th><th>Besaran</th><th>Simbol</th><th>Satuan SI</th><th>Simbol</th></tr><tr><td>1</td><td>Panjang</td><td>l</td><td>meter</td><td>m</td></tr><tr><td>2</td><td>Massa</td><td>m</td><td>kilogram</td><td>kg</td></tr><tr><td>3</td><td>Waktu</td><td>t</td><td>sekon</td><td>s</td></tr><tr><td>4</td><td>Kuat Arus</td><td>I</td><td>ampere</td><td>A</td></tr><tr><td>5</td><td>Suhu</td><td>T</td><td>kelvin</td><td>K</td></tr><tr><td>6</td><td>Jumlah Zat</td><td>n</td><td>mol</td><td>mol</td></tr><tr><td>7</td><td>Intensitas Cahaya</td><td>Iv</td><td>candela</td><td>cd</td></tr></table>
-<h2>2. Besaran Turunan</h2><div class="grid"><div class="card"><h3>Luas</h3>A=p×l<br>m²<br>[L]²</div><div class="card"><h3>Volume</h3>V=p×l×t<br>m³<br>[L]³</div><div class="card"><h3>Kecepatan</h3>v=s/t<br>m/s<br>[L][T]⁻¹</div><div class="card"><h3>Percepatan</h3>a=v/t<br>m/s²<br>[L][T]⁻²</div><div class="card"><h3>Gaya</h3>F=m×a<br>N<br>[M][L][T]⁻²</div><div class="card"><h3>Energi</h3>E=F×s<br>J<br>[M][L]²[T]⁻²</div></div></section>
-<section class="section" id="satuan"><h2>⚖️ Satuan dan SI</h2><p>Satuan adalah pembanding yang digunakan dalam pengukuran. Fisika menggunakan Sistem Internasional (SI) agar hasil pengukuran dipahami secara sama.</p><div class="formula">km → hm → dam → m → dm → cm → mm<br>Turun ×10 | Naik ÷10</div><div class="card"><h3>🔄 Kalkulator Konversi Panjang</h3><input id="v" type="number" placeholder="Angka"><select id="f"><option value="1000">km</option><option value="1">m</option><option value=".01">cm</option><option value=".001">mm</option></select> ke <select id="t"><option value="1000">km</option><option value="1">m</option><option value=".01">cm</option><option value=".001">mm</option></select><button class="btn" onclick="conv()">KONVERSI</button><div id="cr"></div></div></section>
-<section class="section" id="dimensi"><h2>🔬 Dimensi</h2><p>Dimensi menunjukkan bagaimana suatu besaran tersusun dari besaran pokok.</p><div class="grid"><div class="card"><b>[M]</b><br>Massa</div><div class="card"><b>[L]</b><br>Panjang</div><div class="card"><b>[T]</b><br>Waktu</div><div class="card"><b>[I]</b><br>Arus</div><div class="card"><b>[Θ]</b><br>Suhu</div><div class="card"><b>[N]</b><br>Jumlah zat</div><div class="card"><b>[J]</b><br>Intensitas cahaya</div></div><div class="formula">Kecepatan: v=s/t → [v]=[L][T]⁻¹<br>Gaya: F=m×a → [F]=[M][L][T]⁻²</div><div class="quiz"><h3>🧪 Apakah s = v × t benar secara dimensi?</h3><button class="btn" onclick="document.getElementById('fr').innerHTML='✅ BENAR! [L]=[L][T]⁻¹×[T]=[L]'">CEK DIMENSI</button><div id="fr"></div></div></section>
-<section class="section" id="game"><h2>🎮 Game Interaktif</h2><div class="quiz"><h3>🎯 Tebak Besaran <span id="score">| Skor: 0</span></h3><div id="gq"></div><div id="go"></div><button class="btn" onclick="ng()">Soal Berikutnya</button></div><div class="quiz"><h3>🔬 Detektif Dimensi <span id="ds">| Skor: 0</span></h3><div id="dq"></div><div id="do"></div><button class="btn" onclick="nd()">Kasus Berikutnya</button></div></section>
-<section class="section" id="latihan"><h2>📝 Latihan Pemahaman</h2><div id="pr"></div><h2>✏️ Latihan Hitungan</h2><div class="card"><ol><li>Mobil bergerak 100 m selama 20 s. Tentukan kecepatan, satuan, dan dimensinya.</li><li>Benda 5 kg memiliki percepatan 2 m/s². Tentukan gaya dan dimensinya.</li><li>Ubah 5 km menjadi meter.</li><li>Ubah 250 cm menjadi meter.</li><li>Tentukan dimensi energi jika E=F×s.</li></ol><button class="btn" onclick="document.getElementById('sol').classList.toggle('hidden')">👀 Pembahasan</button><div id="sol" class="hidden">1. 5 m/s, [L][T]⁻¹.<br>2. 10 N, [M][L][T]⁻².<br>3. 5000 m.<br>4. 2,5 m.<br>5. [M][L]²[T]⁻².</div></div></section>
-<section class="section" id="evaluasi"><h2>🏆 Uji Pemahaman Akhir</h2><p>Jawab 10 soal dan lihat skor.</p><div id="fq"></div><button class="btn" onclick="finish()">🏆 SELESAIKAN</button><div id="final"></div></section>
-</main><footer><div style="font-size:40px">⚛️</div><h2 style="color:#fff">FISIKA KELAS X</h2><p>Besaran, Satuan, dan Dimensi</p><p><i>“Belajar Fisika bukan sekadar menghafal rumus, tetapi memahami bagaimana alam bekerja.”</i></p><p>Dirancang oleh:</p><h3>Fredynandus Takalamingan, S.Si</h3><p>SMA Negeri 2 Bitung<br>Tahun 2026</p></footer>
+
+<section class="section">
+<h2>📖 Cerita Pengantar: Angka yang Membingungkan</h2>
+<div class="story"><b>Suatu hari Andi diminta membeli tali sepanjang 5.</b><br><br>
+Andi bertanya, “5 apa?” Temannya hanya menjawab, “Pokoknya 5!” Andi tentu bingung. Angka 5 dapat berarti 5 meter, 5 centimeter, atau bahkan 5 kilometer. Nilainya sama, tetapi maknanya sangat berbeda.<br><br>
+Dari cerita ini kita mengetahui bahwa dalam Fisika, sebuah angka tidak boleh berdiri sendiri ketika menyatakan hasil pengukuran. Angka harus dilengkapi dengan informasi yang menjelaskan standar pembandingnya.</div>
+<div class="formula"><b>Hasil Pengukuran = Nilai + Satuan</b><br>Contoh: 5 meter, 10 kilogram, 20 sekon</div>
+</section>
+
+<section class="section" id="materi">
+<h2>📏 A. Memahami Konsep Besaran</h2>
+<p><b>Paragraf 1.</b> Besaran adalah sesuatu yang dapat diukur dan hasil pengukurannya dapat dinyatakan dengan angka serta satuan. Dalam kehidupan sehari-hari sebenarnya kita sangat sering menggunakan besaran. Ketika mengatakan tinggi badan 170 cm, massa beras 5 kg, atau waktu perjalanan 30 menit, kita sedang menggunakan konsep besaran. Fisika menggunakan besaran sebagai bahasa untuk menggambarkan gejala alam secara jelas dan dapat diuji.</p>
+<p><b>Paragraf 2.</b> Kata “dapat diukur” menjadi bagian penting dalam pengertian besaran. Mengukur berarti membandingkan suatu objek atau keadaan dengan standar tertentu. Panjang meja misalnya dapat dibandingkan dengan meter, massa benda dibandingkan dengan kilogram, dan waktu dibandingkan dengan sekon. Hasilnya berupa angka yang menunjukkan berapa kali standar tersebut terkandung dalam sesuatu yang diukur.</p>
+<p><b>Paragraf 3.</b> Besaran membantu para ilmuwan menyampaikan informasi secara objektif. Pernyataan “mobil bergerak cepat” masih bersifat relatif karena setiap orang dapat memiliki pengertian cepat yang berbeda. Akan tetapi, pernyataan “mobil bergerak dengan kecepatan 20 m/s” jauh lebih jelas karena mengandung nilai dan satuan yang dapat dipahami secara sama.</p>
+<p><b>Paragraf 4.</b> Dalam Fisika, besaran tidak hanya digunakan untuk mengukur benda yang terlihat. Suhu, kuat arus listrik, waktu, jumlah zat, dan intensitas cahaya juga termasuk besaran. Artinya, dunia Fisika memerlukan sistem pengukuran yang luas agar berbagai peristiwa alam dapat dipelajari dengan cara yang teratur.</p>
+<p><b>Paragraf 5.</b> Berdasarkan asalnya, besaran dibagi menjadi besaran pokok dan besaran turunan. Besaran pokok menjadi dasar karena satuannya ditetapkan terlebih dahulu. Sementara itu, besaran turunan dibentuk melalui hubungan atau operasi matematis dari satu atau lebih besaran pokok. Pembagian ini sangat penting karena akan menjadi dasar ketika kita mempelajari satuan dan dimensi.</p>
+<p><b>Paragraf 6.</b> Cara termudah mengingat konsep besaran adalah dengan bertanya dua hal: “Apa yang sedang diukur?” dan “Dengan satuan apa hasilnya dinyatakan?” Jika kedua pertanyaan itu dapat dijawab, kita sudah mulai memahami besaran dengan baik. Setelah itu, kita dapat melangkah lebih jauh untuk mengetahui apakah besaran tersebut pokok atau turunan serta bagaimana dimensinya tersusun.</p>
+
+<div class="grid">
+ <div class="card">📏<h3>Panjang</h3>Contoh: panjang meja = <b>2 m</b></div>
+ <div class="card">⚖️<h3>Massa</h3>Contoh: massa tas = <b>5 kg</b></div>
+ <div class="card">⏱️<h3>Waktu</h3>Contoh: belajar = <b>30 s</b></div>
+</div>
+
+<h2>B. Besaran Pokok</h2>
+<p>Besaran pokok adalah besaran yang satuannya telah ditetapkan secara mandiri dan tidak dibentuk dari besaran lain. Terdapat tujuh besaran pokok dalam Sistem Internasional.</p>
+<table>
+<tr><th>No</th><th>Besaran Pokok</th><th>Simbol</th><th>Satuan SI</th><th>Simbol</th></tr>
+<tr><td>1</td><td>Panjang</td><td>l</td><td>meter</td><td>m</td></tr>
+<tr><td>2</td><td>Massa</td><td>m</td><td>kilogram</td><td>kg</td></tr>
+<tr><td>3</td><td>Waktu</td><td>t</td><td>sekon</td><td>s</td></tr>
+<tr><td>4</td><td>Kuat arus listrik</td><td>I</td><td>ampere</td><td>A</td></tr>
+<tr><td>5</td><td>Suhu</td><td>T</td><td>kelvin</td><td>K</td></tr>
+<tr><td>6</td><td>Jumlah zat</td><td>n</td><td>mol</td><td>mol</td></tr>
+<tr><td>7</td><td>Intensitas cahaya</td><td>Iv</td><td>candela</td><td>cd</td></tr>
+</table>
+
+<h2>C. Besaran Turunan</h2>
+<p>Besaran turunan diperoleh dari gabungan besaran pokok melalui operasi matematika seperti perkalian atau pembagian. Contohnya, kecepatan berasal dari panjang dibagi waktu. Karena itu satuan dan dimensinya juga dapat diturunkan dari satuan serta dimensi besaran pokok.</p>
+<div class="grid">
+ <div class="card"><h3>Luas</h3>A = p × l<br>Satuan: m²<br>Dimensi: [L]²</div>
+ <div class="card"><h3>Volume</h3>V = p × l × t<br>Satuan: m³<br>Dimensi: [L]³</div>
+ <div class="card"><h3>Kecepatan</h3>v = s/t<br>Satuan: m/s<br>Dimensi: [L][T]⁻¹</div>
+ <div class="card"><h3>Gaya</h3>F = m × a<br>Satuan: N<br>Dimensi: [M][L][T]⁻²</div>
+</div>
+</section>
+
+<section class="section" id="satuan">
+<h2>⚖️ D. Memahami Satuan Secara Lebih Mendalam</h2>
+<p><b>Paragraf 1.</b> Satuan adalah standar pembanding yang digunakan untuk menyatakan hasil pengukuran. Jika besaran menjawab “apa yang diukur”, maka satuan menjawab “standar apa yang digunakan”. Tanpa satuan, angka hasil pengukuran dapat menimbulkan banyak penafsiran.</p>
+<p><b>Paragraf 2.</b> Dalam sejarah, manusia pernah menggunakan satuan yang berbeda-beda berdasarkan kebiasaan daerah. Hal ini dapat menimbulkan masalah ketika hasil pengukuran dibandingkan. Oleh karena itu, diperlukan sistem satuan yang disepakati secara internasional.</p>
+<p><b>Paragraf 3.</b> Sistem Internasional atau SI digunakan sebagai standar dalam ilmu pengetahuan. Meter digunakan untuk panjang, kilogram untuk massa, dan sekon untuk waktu. Dengan standar yang sama, percobaan dapat diulang dan hasilnya dapat dibandingkan dengan lebih baik.</p>
+<p><b>Paragraf 4.</b> Satuan juga memiliki hubungan erat dengan operasi matematika. Ketika panjang dikalikan panjang, satuannya menjadi meter kuadrat. Ketika panjang dibagi waktu, satuannya menjadi meter per sekon. Dari sinilah kita dapat melihat bahwa satuan dapat membantu memahami makna sebuah rumus.</p>
+<p><b>Paragraf 5.</b> Dalam melakukan konversi satuan, kita tidak mengubah besaran fisiknya, tetapi hanya mengubah cara menyatakannya. Contohnya, 2 meter dan 200 centimeter menunjukkan panjang yang sama. Angkanya berubah karena satuan pembandingnya berbeda.</p>
+<p><b>Paragraf 6.</b> Ketelitian menggunakan satuan sangat penting dalam Fisika. Kesalahan satuan dapat menyebabkan hasil perhitungan menjadi salah walaupun rumus yang digunakan sudah benar. Karena itu, biasakan selalu menulis satuan pada setiap langkah penyelesaian soal.</p>
+
+<div class="formula"><b>Tangga Satuan Panjang:</b><br>km → hm → dam → m → dm → cm → mm<br>Turun satu tingkat ×10 | Naik satu tingkat ÷10</div>
+<div class="card">
+<h3>🔄 Kalkulator Konversi Panjang</h3>
+<input type="number" id="convVal" placeholder="Masukkan angka">
+<select id="from"><option value="1000">km</option><option value="1" selected>m</option><option value="0.01">cm</option><option value="0.001">mm</option></select>
+ke
+<select id="to"><option value="1000">km</option><option value="1">m</option><option value="0.01" selected>cm</option><option value="0.001">mm</option></select>
+<button class="btn" onclick="convert()">KONVERSI</button><div id="convResult"></div>
+</div>
+</section>
+
+<section class="section" id="dimensi">
+<h2>🔬 E. Konsep Dimensi: Bagaimana Cara Kerjanya?</h2>
+<p><b>Paragraf 1.</b> Dimensi adalah cara untuk menunjukkan bagaimana suatu besaran tersusun berdasarkan besaran-besaran pokok. Dimensi tidak menggunakan nama satuan seperti meter atau kilogram, melainkan menggunakan simbol dasar. Karena itu, dimensi dapat dianggap sebagai “sidik struktur” sebuah besaran. Dua besaran yang mempunyai struktur dasar berbeda akan memiliki dimensi yang berbeda.</p>
+<p><b>Paragraf 2.</b> Dalam pembelajaran dasar Fisika, simbol dimensi yang paling sering digunakan adalah [M] untuk massa, [L] untuk panjang, dan [T] untuk waktu. Selain itu terdapat [I] untuk kuat arus listrik, [Θ] untuk suhu, [N] untuk jumlah zat, dan [J] untuk intensitas cahaya. Setiap besaran turunan dapat dibongkar kembali menjadi kombinasi simbol-simbol tersebut.</p>
+<p><b>Paragraf 3.</b> Cara kerja dimensi mengikuti rumus Fisika. Artinya, kita tidak menebak dimensi suatu besaran secara langsung. Pertama, lihat rumus besaran tersebut. Kedua, gantikan setiap besaran dalam rumus dengan dimensinya. Ketiga, lakukan operasi matematika yang sama terhadap simbol dimensi. Jika rumus menggunakan perkalian, dimensi dikalikan. Jika menggunakan pembagian, dimensi dibagi.</p>
+<p><b>Paragraf 4.</b> Pangkat negatif muncul ketika sebuah dimensi berada di penyebut. Misalnya kecepatan adalah panjang dibagi waktu: [L]/[T]. Dalam bentuk pangkat, pembagian oleh [T] dapat ditulis sebagai perkalian dengan [T]⁻¹ sehingga hasilnya [L][T]⁻¹. Cara penulisan ini membuat bentuk dimensi lebih ringkas dan mudah digunakan dalam analisis.</p>
+<p><b>Paragraf 5.</b> Dimensi sangat berguna untuk memeriksa apakah sebuah persamaan Fisika masuk akal. Dua ruas yang dihubungkan dengan tanda sama dengan harus mempunyai dimensi yang sama. Misalnya s = v × t. Ruas kiri adalah panjang [L], sedangkan ruas kanan adalah [L][T]⁻¹ × [T] = [L]. Karena sama, persamaan tersebut konsisten secara dimensi.</p>
+<p><b>Paragraf 6.</b> Namun, analisis dimensi bukan satu-satunya alat untuk membuktikan rumus. Persamaan yang dimensinya sama belum tentu selalu benar secara fisika. Analisis dimensi terutama digunakan sebagai pemeriksaan awal yang sangat kuat untuk menemukan kesalahan satuan, pangkat, atau operasi dalam sebuah persamaan.</p>
+
+<div class="grid">
+<div class="card"><b>[M]</b><br>Massa</div><div class="card"><b>[L]</b><br>Panjang</div>
+<div class="card"><b>[T]</b><br>Waktu</div><div class="card"><b>[I]</b><br>Kuat arus</div>
+<div class="card"><b>[Θ]</b><br>Suhu</div><div class="card"><b>[N]</b><br>Jumlah zat</div>
+<div class="card"><b>[J]</b><br>Intensitas cahaya</div>
+</div>
+
+<h2>🔎 Langkah Detail Menentukan Dimensi</h2>
+<div class="step"><span>1</span><b>Tulis besaran yang ingin dicari.</b><br>Contoh: tentukan dimensi gaya F.</div>
+<div class="step"><span>2</span><b>Cari rumus Fisika yang berhubungan.</b><br>Gaya dirumuskan F = m × a.</div>
+<div class="step"><span>3</span><b>Ganti setiap besaran dengan dimensinya.</b><br>Massa m → [M]. Percepatan a → [L][T]⁻².</div>
+<div class="step"><span>4</span><b>Lakukan operasi sesuai rumus.</b><br>[F] = [M] × [L][T]⁻².</div>
+<div class="step"><span>5</span><b>Sederhanakan hasilnya.</b><br>[F] = [M][L][T]⁻².</div>
+<div class="step"><span>6</span><b>Interpretasikan hasil.</b><br>Gaya tersusun dari massa, panjang, dan waktu dengan pangkat waktu negatif dua.</div>
+
+<h2>📘 Contoh 1: Dimensi Kecepatan</h2>
+<div class="formula">
+Langkah 1: Rumus → v = s/t<br>
+Langkah 2: s adalah panjang → [L]<br>
+Langkah 3: t adalah waktu → [T]<br>
+Langkah 4: Substitusi → [v] = [L]/[T]<br>
+Langkah 5: Tulis dengan pangkat → <b>[v] = [L][T]⁻¹</b>
+</div>
+
+<h2>📘 Contoh 2: Dimensi Percepatan</h2>
+<div class="formula">
+a = v/t<br>
+[v] = [L][T]⁻¹<br>
+[a] = [L][T]⁻¹ / [T]<br>
+[a] = <b>[L][T]⁻²</b>
+</div>
+
+<h2>📘 Contoh 3: Dimensi Gaya</h2>
+<div class="formula">
+F = m × a<br>
+[m] = [M]<br>
+[a] = [L][T]⁻²<br>
+[F] = [M] × [L][T]⁻²<br>
+<b>[F] = [M][L][T]⁻²</b>
+</div>
+
+<h2>📘 Contoh 4: Dimensi Energi</h2>
+<div class="formula">
+E = F × s<br>
+[F] = [M][L][T]⁻²<br>
+[s] = [L]<br>
+[E] = [M][L][T]⁻² × [L]<br>
+<b>[E] = [M][L]²[T]⁻²</b>
+</div>
+
+<details><summary>💡 Mengapa pangkat waktu pada percepatan menjadi -2?</summary>
+Kecepatan sudah memiliki waktu di penyebut: [L][T]⁻¹. Percepatan adalah kecepatan dibagi waktu sekali lagi. Maka [T]⁻¹ dibagi [T] menghasilkan [T]⁻². Artinya, waktu muncul dua kali sebagai faktor pembagi.
+</details>
+<details><summary>💡 Apakah dimensi sama dengan satuan?</summary>
+Tidak. Kecepatan dapat memiliki satuan m/s atau km/jam, tetapi struktur dimensinya tetap [L][T]⁻¹. Satuan dapat berubah melalui konversi, sedangkan dimensi menunjukkan struktur dasar besaran.
+</details>
+</section>
+
+<section class="section" id="simulator">
+<h2>🧪 Simulator Analisis Dimensi</h2>
+<p class="lead">Pilih besaran untuk melihat rumus, proses penggantian dimensi, dan hasil akhirnya secara bertahap.</p>
+<div class="card">
+<select id="dimSelect" onchange="showDimension()">
+<option value="speed">Kecepatan</option><option value="acc">Percepatan</option>
+<option value="force">Gaya</option><option value="energy">Energi</option><option value="pressure">Tekanan</option>
+</select>
+<div id="dimOutput" class="formula"></div>
+<button class="btn" onclick="revealStep()">▶ Tampilkan Langkah Berikutnya</button>
+</div>
+
+<h2>🧪 Cek Persamaan</h2>
+<div class="quiz">
+<p><b>Apakah persamaan s = v × t benar secara dimensi?</b></p>
+<button class="btn" onclick="checkFormula(true)">CEK</button>
+<div id="formulaResult"></div>
+</div>
+<div class="quiz">
+<p><b>Apakah persamaan s = v + t benar secara dimensi?</b></p>
+<button class="btn" onclick="checkFormula(false)">CEK</button>
+<div id="formulaResult2"></div>
+</div>
+</section>
+
+<section class="section" id="game">
+<h2>🎮 Game Interaktif</h2>
+<div class="quiz">
+<div class="gamehead"><h3>🎯 Game 1: Tebak Besaran</h3><span class="score" id="gameScore">Skor: 0</span></div>
+<div id="gameQuestion"></div><div id="gameOptions"></div><button class="btn" onclick="nextGame()">Soal Berikutnya</button>
+</div>
+<div class="quiz">
+<div class="gamehead"><h3>🔬 Game 2: Detektif Dimensi</h3><span class="score" id="detectScore">Skor: 0</span></div>
+<div id="detectQuestion"></div><div id="detectOptions"></div><button class="btn" onclick="nextDetect()">Kasus Berikutnya</button>
+</div>
+</section>
+
+<section class="section" id="latihan">
+<h2>📝 Latihan Pemahaman</h2>
+<div id="practice"></div>
+<h2>✏️ Latihan Hitungan</h2>
+<div class="card">
+<ol>
+<li>Sebuah mobil bergerak sejauh 100 m dalam waktu 20 s. Tentukan kecepatan, satuan, dan dimensinya.</li>
+<li>Benda bermassa 5 kg memiliki percepatan 2 m/s². Tentukan gaya, satuan, dan dimensinya.</li>
+<li>Ubah 5 km menjadi meter.</li>
+<li>Ubah 250 cm menjadi meter.</li>
+<li>Tentukan dimensi energi jika E = F × s.</li>
+</ol>
+<button class="btn" onclick="document.getElementById('solutions').classList.toggle('hidden')">👀 Lihat Pembahasan</button>
+<div id="solutions" class="hidden">
+<hr><b>1.</b> v = s/t = 100/20 = 5 m/s. Dimensi [L][T]⁻¹.<br>
+<b>2.</b> F = m×a = 5×2 = 10 N. Dimensi [M][L][T]⁻².<br>
+<b>3.</b> 5 km = 5000 m.<br><b>4.</b> 250 cm = 2,5 m.<br>
+<b>5.</b> [E]=[F]×[L]=[M][L][T]⁻²×[L]=[M][L]²[T]⁻².
+</div>
+</div>
+</section>
+
+<section class="section" id="evaluasi">
+<h2>🏆 Evaluasi Akhir</h2>
+<p>Jawab semua soal. Setelah selesai, klik tombol untuk mendapatkan skor dan kategori hasil belajar.</p>
+<div id="finalQuiz"></div>
+<button class="btn" onclick="finishEvaluation()">🏆 SELESAIKAN EVALUASI</button>
+<div id="finalResult"></div>
+</section>
+</main>
+
+<div class="progressbox"><b>📈 Progress Belajar</b><div class="progress"><i id="learnBar"></i></div><span id="learnText">0% dijelajahi</span></div>
+
+<footer>
+<div style="font-size:45px">⚛️</div>
+<h2 style="color:white">FISIKA KELAS X</h2>
+<p>Besaran, Satuan, dan Dimensi</p>
+<p><i>"Belajar Fisika bukan sekadar menghafal rumus, tetapi memahami bagaimana alam bekerja."</i></p>
+<p>Dirancang oleh:</p><h3>Fredynandus Takalamingan, S.Si</h3>
+<p>SMA Negeri 2 Bitung<br>Tahun 2026</p>
+</footer>
+
 <script>
-let n=0;let z=setInterval(()=>{n+=5;lb.style.width=n+'%';pct.textContent=n+'%';if(n>=100){clearInterval(z);start.classList.remove('hidden')}},50);start.onclick=()=>loading.style.display='none';
-function ref(x){document.getElementById('ref').innerHTML=x?'<p class="correct">🎉 Benar! Hasil pengukuran harus disertai satuan.</p>':'<p class="wrong">❌ Coba lagi. Angka tanpa satuan belum jelas.</p>'}
-function conv(){let x=+v.value;if(isNaN(x)){cr.textContent='Masukkan angka.';return}cr.textContent='Hasil: '+x*(+f.value)/(+t.value)}
-const G=[['Kilogram satuan dari?',['Panjang','Massa','Waktu','Suhu'],1],['Sekon satuan dari?',['Waktu','Massa','Suhu','Arus'],0],['Meter satuan untuk?',['Massa','Panjang','Energi','Gaya'],1],['Kelvin satuan untuk?',['Suhu','Massa','Waktu','Luas'],0]];let gi=0,sc=0;
-function ng(){let q=G[gi++%G.length];gq.innerHTML='<h3>'+q[0]+'</h3>';go.innerHTML=q[1].map((a,i)=>`<button class="option" onclick="ag(this,${i},${q[2]})">${a}</button>`).join('')}
-function ag(e,a,c){e.classList.add(a==c?'correct':'wrong');if(a==c)sc+=10;score.textContent='| Skor: '+sc}
-const D=[['v=s/t, dimensinya?',['[L]','[L][T]⁻¹','[M][L]','[T]²'],1],['F=m×a, dimensinya?',['[M][L]','[M][L][T]⁻²','[L][T]⁻¹','[L]²'],1],['Luas, dimensinya?',['[L]²','[L]³','[M][L]','[T]'],0]];let dx=0,dc=0;
-function nd(){let q=D[dx++%D.length];dq.innerHTML='<h3>'+q[0]+'</h3>';document.getElementById('do').innerHTML=q[1].map((a,i)=>`<button class="option" onclick="ad(this,${i},${q[2]})">${a}</button>`).join('')}
-function ad(e,a,c){e.classList.add(a==c?'correct':'wrong');if(a==c)dc+=10;ds.textContent='| Skor: '+dc}
-const Q=[['Besaran bersatuan kilogram adalah ...',['Panjang','Massa','Waktu','Suhu'],1,'Kilogram adalah satuan SI massa.'],['Satuan SI waktu adalah ...',['Menit','Jam','Sekon','Hari'],2,'Satuan SI waktu adalah sekon.'],['Dimensi kecepatan ...',['[L][T]⁻¹','[L][T]⁻²','[M][L]','[L]²'],0,'v=s/t.'],['500 cm = ... m',['0,5','5','50','500'],1,'500÷100=5.'],['Newton adalah satuan ...',['Energi','Gaya','Daya','Tekanan'],1,'Newton adalah satuan gaya.'],['Dimensi luas ...',['[L]','[L]²','[L]³','[M][L]'],1,'Luas = panjang × lebar.'],['Joule satuan ...',['Gaya','Energi','Arus','Massa'],1,'Joule adalah satuan energi.'],['Besaran turunan ...',['Massa','Waktu','Suhu','Percepatan'],3,'Percepatan adalah besaran turunan.'],['Dimensi gaya ...',['[M][L][T]⁻²','[L][T]⁻¹','[M][L]²[T]⁻²','[L]²'],0,'F=m×a.'],['5 km = ... m',['500','5000','50000','5'],1,'5×1000=5000.']];
-function render(){pr.innerHTML=Q.map((q,k)=>`<div class="quiz"><b>${k+1}. ${q[0]}</b>${q[1].map((a,i)=>`<button class="option" onclick="pa(${k},${i})">${a}</button>`).join('')}<div id="p${k}"></div></div>`).join('');fq.innerHTML=Q.map((q,k)=>`<div class="quiz"><b>${k+1}. ${q[0]}</b>${q[1].map((a,i)=>`<label class="option"><input type="radio" name="q${k}" value="${i}"> ${a}</label>`).join('')}</div>`).join('')}
-function pa(k,a){document.getElementById('p'+k).innerHTML=a==Q[k][2]?'<span class="correct">✅ Benar!</span>':'<span class="wrong">❌ '+Q[k][3]+'</span>'}
-function finish(){let s=0;Q.forEach((q,k)=>{let a=document.querySelector(`input[name=q${k}]:checked`);if(a&&+a.value==q[2])s+=10});let c=s>=90?'🏆 Sangat Baik':s>=80?'⭐ Baik':s>=70?'👍 Cukup':'📚 Mari Belajar Lagi';final.innerHTML='<h2>Skor: '+s+'/100</h2><h3>'+c+'</h3><p>Semakin sering berlatih, semakin mudah memahami Fisika!</p>'}
-render();ng();nd();
-</script></body></html>
+let load=0;
+const loadTimer=setInterval(()=>{
+ load+=4; loadBar.style.width=load+'%'; percent.textContent=load+'%';
+ if(load>=100){clearInterval(loadTimer);startBtn.style.display='inline-block'}
+},45);
+startBtn.onclick=()=>loading.style.display='none';
+
+function convert(){
+ const v=Number(convVal.value);
+ if(isNaN(v)){convResult.innerHTML='<span class="wrong">Masukkan angka terlebih dahulu.</span>';return}
+ const result=v*Number(from.value)/Number(to.value);
+ convResult.innerHTML='<div class="callout">Hasil konversi: <b>'+result+'</b></div>';
+}
+
+const dimensionData={
+ speed:{title:'KECEPATAN',steps:['Rumus: v = s/t','Dimensi s = [L]','Dimensi t = [T]','Substitusi: [v] = [L]/[T]','Hasil akhir: [v] = [L][T]⁻¹']},
+ acc:{title:'PERCEPATAN',steps:['Rumus: a = v/t','Dimensi v = [L][T]⁻¹','Dimensi t = [T]','Substitusi: [a] = [L][T]⁻¹/[T]','Hasil akhir: [a] = [L][T]⁻²']},
+ force:{title:'GAYA',steps:['Rumus: F = m × a','Dimensi m = [M]','Dimensi a = [L][T]⁻²','Substitusi: [F] = [M] × [L][T]⁻²','Hasil akhir: [F] = [M][L][T]⁻²']},
+ energy:{title:'ENERGI',steps:['Rumus: E = F × s','Dimensi F = [M][L][T]⁻²','Dimensi s = [L]','Substitusi: [E] = [M][L][T]⁻² × [L]','Hasil akhir: [E] = [M][L]²[T]⁻²']},
+ pressure:{title:'TEKANAN',steps:['Rumus: P = F/A','Dimensi F = [M][L][T]⁻²','Dimensi A = [L]²','Substitusi: [P] = [M][L][T]⁻²/[L]²','Hasil akhir: [P] = [M][L]⁻¹[T]⁻²']}
+};
+let dimStep=0;
+function showDimension(){dimStep=0;renderDim()}
+function revealStep(){const max=dimensionData[dimSelect.value].steps.length-1;if(dimStep<max)dimStep++;renderDim()}
+function renderDim(){
+ const d=dimensionData[dimSelect.value];
+ dimOutput.innerHTML='<b>🔍 '+d.title+'</b><br>'+d.steps.slice(0,dimStep+1).map((x,i)=>`<div style="margin-top:8px">${i+1}. ${x}</div>`).join('');
+}
+renderDim();
+
+function checkFormula(ok){
+ if(ok) formulaResult.innerHTML='<div class="correct result">✅ BENAR: [L] = [L][T]⁻¹ × [T] = [L]. Kedua ruas memiliki dimensi sama.</div>';
+ else formulaResult2.innerHTML='<div class="wrong result">❌ SALAH: v berdimensi [L][T]⁻¹ sedangkan t berdimensi [T]. Besaran dengan dimensi berbeda tidak dapat dijumlahkan.</div>';
+}
+
+const gameData=[
+ ['Kilogram merupakan satuan dari?',['Panjang','Massa','Waktu','Suhu'],1],
+ ['Sekon merupakan satuan dari?',['Waktu','Massa','Suhu','Arus'],0],
+ ['Ampere merupakan satuan untuk?',['Suhu','Arus listrik','Waktu','Gaya'],1],
+ ['Candela merupakan satuan untuk?',['Intensitas cahaya','Energi','Gaya','Luas'],0]
+];
+let gi=0,gs=0;
+function nextGame(){
+ const q=gameData[gi%gameData.length];
+ gameQuestion.innerHTML='<h3>'+q[0]+'</h3>';
+ gameOptions.innerHTML=q[1].map((x,i)=>`<button class="option" onclick="answerGame(this,${i},${q[2]})">${x}</button>`).join('');
+ gi++;
+}
+function answerGame(el,a,c){
+ el.classList.add(a===c?'correct':'wrong');
+ if(a===c)gs+=10; gameScore.textContent='Skor: '+gs;
+}
+
+const detectData=[
+ ['v = s/t, dimensinya?',['[L]','[L][T]⁻¹','[M][L]','[T]²'],1],
+ ['a = v/t, dimensinya?',['[L][T]⁻²','[M][L]','[T]','[L]²'],0],
+ ['F = m×a, dimensinya?',['[M][L]','[M][L][T]⁻²','[L][T]⁻¹','[M][T]'],1],
+ ['E = F×s, dimensinya?',['[M][L]²[T]⁻²','[M][L][T]⁻²','[L]²[T]⁻¹','[M][T]'],0]
+];
+let di=0,ds=0;
+function nextDetect(){
+ const q=detectData[di%detectData.length];
+ detectQuestion.innerHTML='<h3>'+q[0]+'</h3>';
+ detectOptions.innerHTML=q[1].map((x,i)=>`<button class="option" onclick="answerDetect(this,${i},${q[2]})">${x}</button>`).join('');
+ di++;
+}
+function answerDetect(el,a,c){
+ el.classList.add(a===c?'correct':'wrong');
+ if(a===c)ds+=10; detectScore.textContent='Skor: '+ds;
+}
+
+const practiceData=[
+ ['Besaran yang memiliki satuan kilogram adalah ...',['Panjang','Massa','Waktu','Suhu'],1,'Kilogram merupakan satuan SI untuk massa.'],
+ ['Berikut yang termasuk besaran pokok adalah ...',['Gaya','Energi','Panjang','Kecepatan'],2,'Panjang termasuk besaran pokok.'],
+ ['Satuan SI untuk waktu adalah ...',['Menit','Jam','Sekon','Hari'],2,'Satuan SI waktu adalah sekon.'],
+ ['Dimensi kecepatan adalah ...',['[L][T]⁻¹','[L][T]⁻²','[M][L]','[L]²'],0,'Kecepatan = panjang/waktu.'],
+ ['500 cm sama dengan ... meter',['0,5','5','50','5000'],1,'500 ÷ 100 = 5 meter.'],
+ ['Newton adalah satuan dari ...',['Energi','Gaya','Daya','Tekanan'],1,'Newton adalah satuan gaya.'],
+ ['Dimensi luas adalah ...',['[L]','[L]²','[L]³','[M][L]'],1,'Luas = panjang × lebar = [L]².'],
+ ['Joule adalah satuan dari ...',['Gaya','Energi','Arus','Massa'],1,'Joule adalah satuan energi.'],
+ ['Besaran turunan adalah ...',['Massa','Waktu','Suhu','Percepatan'],3,'Percepatan diturunkan dari panjang dan waktu.'],
+ ['Dimensi gaya adalah ...',['[M][L][T]⁻²','[L][T]⁻¹','[M][L]²[T]⁻²','[L]²'],0,'F = m×a.']
+];
+function renderPractice(){
+ practice.innerHTML=practiceData.map((q,n)=>`<div class="quiz"><b>${n+1}. ${q[0]}</b>${q[1].map((x,i)=>`<button class="option" onclick="practiceAnswer(${n},${i})">${x}</button>`).join('')}<div id="p${n}"></div></div>`).join('');
+}
+function practiceAnswer(n,a){
+ const q=practiceData[n];
+ document.getElementById('p'+n).innerHTML=a===q[2]?`<div class="correct result">✅ Benar! ${q[3]}</div>`:`<div class="wrong result">❌ Belum tepat. ${q[3]}</div>`;
+}
+function renderFinal(){
+ finalQuiz.innerHTML=practiceData.map((q,n)=>`<div class="quiz"><b>${n+1}. ${q[0]}</b>${q[1].map((x,i)=>`<label class="option"><input type="radio" name="f${n}" value="${i}"> ${x}</label>`).join('')}</div>`).join('');
+}
+function finishEvaluation(){
+ let score=0;
+ practiceData.forEach((q,n)=>{const a=document.querySelector(`input[name="f${n}"]:checked`);if(a&&Number(a.value)===q[2])score+=10});
+ const cat=score>=90?'🏆 Sangat Baik':score>=80?'⭐ Baik':score>=70?'👍 Cukup':'📚 Mari Belajar Lagi';
+ finalResult.innerHTML=`<div class="card"><h2>Skor Kamu: ${score}/100</h2><h3>${cat}</h3><p>Semakin sering berlatih dan memeriksa langkah, semakin mudah memahami konsep Fisika.</p></div>`;
+}
+
+const sections=document.querySelectorAll('.section');
+window.addEventListener('scroll',()=>{
+ let seen=0;sections.forEach(s=>{if(s.getBoundingClientRect().top<innerHeight*.8)seen++});
+ const p=Math.round(seen/sections.length*100);learnBar.style.width=p+'%';learnText.textContent=p+'% dijelajahi';
+});
+
+renderPractice();renderFinal();nextGame();nextDetect();
+</script>
+</body>
+</html>
